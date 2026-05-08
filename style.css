@@ -1,0 +1,1201 @@
+/* ═══════════════════════════════════════════════════════════════════
+   KKMP KORPRI RAYA — style.css
+   Koperasi Kelurahan Merah Putih, Kopri Raya, Sukarame, Bandar Lampung
+   Palet Hijau Zamrud — senada & nyaman dilihat
+═══════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════
+   1. CSS VARIABLES
+══════════════════════════════════════════ */
+:root {
+  /* Hijau utama */
+  --green:        #1B6B3A;
+  --green-mid:    #2E8B57;
+  --green-light:  #4AB870;
+  --green-pale:   #E6F4ED;
+  --green-dark:   #0F3D22;
+  --green-darker: #081F12;
+  --green-glow:   rgba(27, 107, 58, 0.18);
+
+  /* Netral */
+  --white:        #ffffff;
+  --off-white:    #f6faf8;
+  --gray-100:     #edf3ef;
+  --gray-200:     #d3e0d9;
+  --gray-500:     #6b8a77;
+  --gray-700:     #354d3e;
+  --dark:         #0d1f16;
+
+  /* Tipografi */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  /* Border radius */
+  --radius-sm:    8px;
+  --radius-md:    16px;
+  --radius-lg:    24px;
+  --radius-xl:    32px;
+
+  /* Shadow */
+  --shadow-sm:    0 2px 12px rgba(15, 61, 34, 0.08);
+  --shadow-md:    0 8px 32px rgba(15, 61, 34, 0.14);
+  --shadow-lg:    0 20px 60px rgba(15, 61, 34, 0.18);
+
+  /* Transisi */
+  --transition:   0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ══════════════════════════════════════════
+   2. RESET & BASE
+══════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--dark);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* ══════════════════════════════════════════
+   3. LAYOUT UTILITIES
+══════════════════════════════════════════ */
+.container {
+  width: 90%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+
+/* ══════════════════════════════════════════
+   4. TIPOGRAFI HELPERS
+══════════════════════════════════════════ */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--green);
+  background: var(--green-pale);
+  border: 1px solid rgba(27, 107, 58, 0.18);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.18;
+  color: var(--dark);
+}
+
+.section-title span {
+  color: var(--green);
+}
+
+
+/* ══════════════════════════════════════════
+   5. SCROLL REVEAL ANIMATIONS
+══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children — asta-card & prog-card */
+.reveal-stagger .asta-card,
+.reveal-stagger .prog-card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-stagger.visible .asta-card,
+.reveal-stagger.visible .prog-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger.visible .asta-card:nth-child(1),
+.reveal-stagger.visible .prog-card:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.visible .asta-card:nth-child(2),
+.reveal-stagger.visible .prog-card:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger.visible .asta-card:nth-child(3),
+.reveal-stagger.visible .prog-card:nth-child(3) { transition-delay: 0.19s; }
+.reveal-stagger.visible .asta-card:nth-child(4),
+.reveal-stagger.visible .prog-card:nth-child(4) { transition-delay: 0.26s; }
+.reveal-stagger.visible .asta-card:nth-child(5) { transition-delay: 0.33s; }
+.reveal-stagger.visible .asta-card:nth-child(6) { transition-delay: 0.40s; }
+.reveal-stagger.visible .asta-card:nth-child(7) { transition-delay: 0.47s; }
+.reveal-stagger.visible .asta-card:nth-child(8) { transition-delay: 0.54s; }
+
+
+/* ══════════════════════════════════════════
+   6. NAVIGASI
+══════════════════════════════════════════ */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+#navbar.scrolled {
+  border-color: var(--gray-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--dark);
+}
+
+.logo-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Gambar logo — isi penuh badge */
+.logo-badge img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+/* SVG fallback jika gambar gagal dimuat */
+.logo-badge .logo-fallback-svg {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.logo-text span {
+  color: var(--green);
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--green);
+  background: var(--green-pale);
+}
+
+.nav-links a.active {
+  color: var(--green);
+  background: var(--green-pale);
+}
+
+.nav-links .nav-cta {
+  background: var(--green);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+
+.nav-links .nav-cta:hover {
+  background: var(--green-dark);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px; left: 0; right: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 12px 0 16px;
+  z-index: 899;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-nav-link {
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  border-left: 3px solid transparent;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.mobile-nav-link:hover {
+  color: var(--green);
+  border-left-color: var(--green);
+  background: var(--green-pale);
+}
+
+
+/* ══════════════════════════════════════════
+   7. HERO SECTION
+══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(160deg, #f4faf7 0%, #eaf4ef 50%, #d9ede2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dekoratif latar radial */
+#hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(27, 107, 58, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(46, 139, 87, 0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  width: 90%;
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
+  align-items: center;
+  padding: 100px 0 80px;
+}
+
+/* Badge "Koperasi Aktif" */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+  background: rgba(27, 107, 58, 0.1);
+  border: 1px solid rgba(27, 107, 58, 0.2);
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+.hero-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-light);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.6; }
+}
+
+/* Judul hero */
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.12;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+
+.hero-title .accent {
+  color: var(--green);
+  display: block;
+  font-style: italic;
+}
+
+/* Subtitle */
+.hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--gray-700);
+  max-width: 560px;
+  margin-bottom: 36px;
+}
+
+/* Tombol aksi */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 14px 26px;
+  border-radius: 999px;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 20px rgba(27, 107, 58, 0.28);
+}
+
+.btn-primary:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(27, 107, 58, 0.36);
+}
+
+.btn-primary svg {
+  transition: transform var(--transition);
+}
+
+.btn-primary:hover svg {
+  transform: translateX(4px);
+}
+
+/* Statistik hero */
+.hero-stats {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.9rem;
+  color: var(--green);
+  line-height: 1;
+}
+
+.stat-num span {
+  font-size: 1.2rem;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  letter-spacing: 0.03em;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--gray-200);
+}
+
+/* ── Panel Visual Hero (kanan) ── */
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.hero-emblem {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px 32px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Garis atas hijau gradien */
+.hero-emblem::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green-dark), var(--green-light));
+}
+
+.emblem-logo-wrap {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(27, 107, 58, 0.3);
+}
+
+/* Gambar logo di dalam emblem */
+.emblem-logo-wrap img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Emoji fallback jika gambar gagal */
+.emblem-icon-fallback {
+  font-size: 2.4rem;
+  display: none;
+}
+
+.emblem-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.emblem-sub {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+
+.emblem-divider {
+  height: 1px;
+  background: var(--gray-100);
+  margin: 0 -12px 20px;
+}
+
+.emblem-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.emblem-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--gray-700);
+  line-height: 1.55;
+}
+
+.emblem-row-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Info cards kecil di bawah emblem */
+.hero-info-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.info-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--green-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.info-card-label {
+  font-size: 0.7rem;
+  color: var(--gray-500);
+  font-weight: 400;
+}
+
+.info-card-value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.3;
+}
+
+
+/* ══════════════════════════════════════════
+   8. TENTANG KAMI
+══════════════════════════════════════════ */
+#tentang {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Panel visual kiri — kartu kutipan hijau */
+.about-visual-panel {
+  position: relative;
+}
+
+.about-main-card {
+  background: linear-gradient(145deg, var(--green-dark), var(--green));
+  border-radius: var(--radius-xl);
+  padding: 48px 40px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-main-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+.about-main-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+.amc-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+}
+
+.amc-quote {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+
+.amc-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin-bottom: 20px;
+}
+
+.amc-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.amc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.amc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-light);
+  flex-shrink: 0;
+}
+
+/* Badge tahun berdiri */
+.about-badge {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px 22px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  border: 2px solid var(--green-pale);
+}
+
+.badge-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+
+.badge-text {
+  font-size: 0.68rem;
+  color: var(--gray-500);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Konten teks kanan */
+.about-lead {
+  font-size: 1.02rem;
+  line-height: 1.78;
+  color: var(--gray-700);
+  margin-bottom: 32px;
+  margin-top: 18px;
+}
+
+.vmv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vmv-item {
+  display: flex;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--off-white);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--green);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.vmv-item:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateX(4px);
+}
+
+.vmv-item h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 4px;
+}
+
+.vmv-item p {
+  font-size: 0.86rem;
+  color: var(--gray-700);
+  line-height: 1.65;
+}
+
+
+/* ══════════════════════════════════════════
+   9. ASTA CITA
+══════════════════════════════════════════ */
+#asta-cita {
+  background: var(--green-darker);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+#asta-cita::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(27, 107, 58, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(46, 139, 87, 0.15) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.asta-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.asta-header .section-tag {
+  background: rgba(74, 184, 112, 0.2);
+  color: var(--green-light);
+  border-color: rgba(74, 184, 112, 0.25);
+}
+
+.asta-header .section-title {
+  color: var(--white);
+}
+
+.asta-header .section-title span {
+  color: var(--green-light);
+}
+
+.asta-header p {
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 560px;
+  margin: 12px auto 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Grid 4 kolom */
+.asta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.asta-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.asta-card:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(74, 184, 112, 0.3);
+  transform: translateY(-4px);
+}
+
+.asta-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgba(74, 184, 112, 0.35);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.asta-card h4 {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.asta-card p {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.65;
+}
+
+
+/* ══════════════════════════════════════════
+   10. CTA SECTION
+══════════════════════════════════════════ */
+#cta {
+  padding: 80px 0;
+  background: var(--off-white);
+}
+
+.cta-box {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+  border-radius: var(--radius-xl);
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.cta-text .section-tag {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cta-text .section-title {
+  color: var(--white);
+}
+
+.cta-text .section-title span {
+  color: var(--green-light);
+}
+
+.cta-text p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.97rem;
+  line-height: 1.68;
+  margin-top: 10px;
+  max-width: 420px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  color: var(--green-dark);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 16px 30px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2);
+}
+
+.cta-btn svg {
+  transition: transform var(--transition);
+}
+
+.cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+
+/* ══════════════════════════════════════════
+   11. FOOTER
+══════════════════════════════════════════ */
+footer {
+  background: var(--dark);
+  padding: 64px 0 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+}
+
+/* Branding */
+.footer-brand .logo-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.footer-brand .logo-text span {
+  color: var(--green-light);
+}
+
+.footer-brand p {
+  font-size: 0.87rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.75;
+  margin-bottom: 22px;
+  max-width: 380px;
+}
+
+/* Media sosial */
+.social-links {
+  display: flex;
+  gap: 10px;
+}
+
+.social-link {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.social-link:hover {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+}
+
+/* Kolom kontak */
+.footer-col h5 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.87rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.55;
+}
+
+.ci-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Footer bawah */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.footer-bottom a {
+  color: rgba(255, 255, 255, 0.5);
+  transition: color var(--transition);
+}
+
+.footer-bottom a:hover {
+  color: var(--green-light);
+}
+
+
+/* ══════════════════════════════════════════
+   12. RESPONSIVE — TABLET & MOBILE
+══════════════════════════════════════════ */
+@media (max-width: 960px) {
+  /* Hero jadi 1 kolom, panel visual disembunyikan */
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding: 90px 0 60px;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+
+  /* Tentang kami 1 kolom */
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-badge {
+    right: 0;
+  }
+
+  /* Asta cita 2 kolom */
+  .asta-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Footer 1 kolom */
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* CTA vertikal */
+  .cta-box {
+    flex-direction: column;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Sembunyikan nav links, tampilkan hamburger */
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Asta cita 1 kolom */
+  .asta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Info cards 1 kolom */
+  .hero-info-cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Typography scale */
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .cta-box {
+    padding: 32px 24px;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+}

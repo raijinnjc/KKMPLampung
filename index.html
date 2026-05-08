@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KKMP Korpri Raya — Koperasi Kelurahan Merah Putih</title>
+  <meta name="description" content="Koperasi Kelurahan Merah Putih (KKMP) Korpri Raya — Dari pemerintah, untuk kesejahteraan rakyat. Wadah koperasi warga Kopri Raya, Sukarame, Bandar Lampung." />
+  <meta name="keywords" content="KKMP Korpri Raya, Koperasi Kelurahan Merah Putih, Bandar Lampung, Koperasi, Ekonomi Kerakyatan, Sahrul Hidayat" />
+  <meta name="author" content="KKMP Korpri Raya" />
+  <meta property="og:title" content="KKMP Korpri Raya — Koperasi Kelurahan Merah Putih" />
+  <meta property="og:description" content="Dari pemerintah, untuk kesejahteraan rakyat. Koperasi warga Kopri Raya, Sukarame, Bandar Lampung." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="id_ID" />
+  <link rel="icon" href="logo-kkmp.png?v=2" type="image/png" sizes="any" />
+  <link rel="apple-touch-icon" href="logo-kkmp.png?v=2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       KKMP KORPRI RAYA — Desain Hijau Kerakyatan
+       Palet utama: Hijau Zamrud (#1B6B3A) & varian senada
+    ═══════════════════════════════════════════════════════ */
+
+    /* ── CSS VARIABLES ── */
+    :root {
+      --green:        #1B6B3A;
+      --green-mid:    #2E8B57;
+      --green-light:  #4AB870;
+      --green-pale:   #E6F4ED;
+      --green-dark:   #0F3D22;
+      --green-darker: #081F12;
+      --green-glow:   rgba(27, 107, 58, 0.18);
+
+      --white:        #ffffff;
+      --off-white:    #f6faf8;
+      --gray-100:     #edf3ef;
+      --gray-200:     #d3e0d9;
+      --gray-500:     #6b8a77;
+      --gray-700:     #354d3e;
+      --dark:         #0d1f16;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --radius-sm:    8px;
+      --radius-md:    16px;
+      --radius-lg:    24px;
+      --radius-xl:    32px;
+
+      --shadow-sm:    0 2px 12px rgba(15, 61, 34, 0.08);
+      --shadow-md:    0 8px 32px rgba(15, 61, 34, 0.14);
+      --shadow-lg:    0 20px 60px rgba(15, 61, 34, 0.18);
+
+      --transition:   0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── CONTAINER ── */
+    .container {
+      width: 90%;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* ── TYPOGRAPHY HELPERS ── */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-pale);
+      border: 1px solid rgba(27, 107, 58, 0.18);
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.18;
+      color: var(--dark);
+    }
+    .section-title span {
+      color: var(--green);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger .asta-card,
+    .reveal-stagger .prog-card {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal-stagger.visible .asta-card,
+    .reveal-stagger.visible .prog-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger.visible .asta-card:nth-child(1),
+    .reveal-stagger.visible .prog-card:nth-child(1) { transition-delay: 0.05s; }
+    .reveal-stagger.visible .asta-card:nth-child(2),
+    .reveal-stagger.visible .prog-card:nth-child(2) { transition-delay: 0.12s; }
+    .reveal-stagger.visible .asta-card:nth-child(3),
+    .reveal-stagger.visible .prog-card:nth-child(3) { transition-delay: 0.19s; }
+    .reveal-stagger.visible .asta-card:nth-child(4),
+    .reveal-stagger.visible .prog-card:nth-child(4) { transition-delay: 0.26s; }
+    .reveal-stagger.visible .asta-card:nth-child(5) { transition-delay: 0.33s; }
+    .reveal-stagger.visible .asta-card:nth-child(6) { transition-delay: 0.40s; }
+    .reveal-stagger.visible .asta-card:nth-child(7) { transition-delay: 0.47s; }
+    .reveal-stagger.visible .asta-card:nth-child(8) { transition-delay: 0.54s; }
+
+    /* ══════════════════════════════════════════
+       NAVIGASI
+    ══════════════════════════════════════════ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    #navbar.scrolled {
+      border-color: var(--gray-200);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--dark);
+    }
+    .logo-badge {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .logo-text span { color: var(--green); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-links a:hover { color: var(--green); background: var(--green-pale); }
+    .nav-links .nav-cta {
+      background: var(--green);
+      color: var(--white);
+      padding: 8px 18px;
+      border-radius: 999px;
+    }
+    .nav-links .nav-cta:hover { background: var(--green-dark); color: var(--white); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 12px 0 16px;
+      z-index: 899;
+      flex-direction: column;
+      box-shadow: var(--shadow-md);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-nav-link {
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      border-left: 3px solid transparent;
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+    }
+    .mobile-nav-link:hover {
+      color: var(--green);
+      border-left-color: var(--green);
+      background: var(--green-pale);
+    }
+
+    /* ══════════════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════════════ */
+    #hero {
+      padding: 0;
+      background: linear-gradient(160deg, #f4faf7 0%, #eaf4ef 50%, #d9ede2 100%);
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Dekoratif latar */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(27,107,58,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46,139,87,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      width: 90%;
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items: center;
+      padding: 100px 0 80px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(27, 107, 58, 0.1);
+      border: 1px solid rgba(27, 107, 58, 0.2);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green-light);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.6; }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.12;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .hero-title .accent {
+      color: var(--green);
+      display: block;
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--gray-700);
+      max-width: 560px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 14px 26px;
+      border-radius: 999px;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(27,107,58,0.28);
+    }
+    .btn-primary:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(27,107,58,0.36);
+    }
+    .btn-primary svg { transition: transform var(--transition); }
+    .btn-primary:hover svg { transform: translateX(4px); }
+
+    /* ── Hero stat ── */
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 2px; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.9rem;
+      color: var(--green);
+      line-height: 1;
+    }
+    .stat-num span { font-size: 1.2rem; }
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gray-500);
+      letter-spacing: 0.03em;
+    }
+    .stat-divider {
+      width: 1px;
+      background: var(--gray-200);
+      align-self: stretch;
+      margin: 4px 0;
+    }
+
+    /* ── Hero Visual Panel (kanan) ── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-emblem {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-emblem::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-dark), var(--green-light));
+    }
+
+    .emblem-icon {
+      width: 80px; height: 80px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem;
+      box-shadow: 0 8px 24px rgba(27,107,58,0.3);
+    }
+
+    .emblem-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .emblem-sub {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      margin-bottom: 24px;
+    }
+    .emblem-divider {
+      height: 1px;
+      background: var(--gray-100);
+      margin: 0 -12px 20px;
+    }
+
+    .emblem-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+    .emblem-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--gray-700);
+    }
+    .emblem-row-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Info cards kecil */
+    .hero-info-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .info-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .info-card-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .info-card-label {
+      font-size: 0.7rem;
+      color: var(--gray-500);
+      font-weight: 400;
+    }
+    .info-card-value {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    /* ══════════════════════════════════════════
+       TENTANG KAMI
+    ══════════════════════════════════════════ */
+    #tentang {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-visual-panel {
+      position: relative;
+    }
+    .about-main-card {
+      background: linear-gradient(145deg, var(--green-dark), var(--green));
+      border-radius: var(--radius-xl);
+      padding: 48px 40px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-main-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .about-main-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .amc-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 12px;
+    }
+    .amc-quote {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.4;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+    .amc-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+      margin-bottom: 20px;
+    }
+    .amc-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .amc-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+    }
+    .amc-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green-light);
+      flex-shrink: 0;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 16px 22px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      border: 2px solid var(--green-pale);
+    }
+    .badge-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+    .badge-text {
+      font-size: 0.68rem;
+      color: var(--gray-500);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* About content */
+    .about-content { }
+    .about-lead {
+      font-size: 1.02rem;
+      line-height: 1.78;
+      color: var(--gray-700);
+      margin-bottom: 32px;
+    }
+    .vmv-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .vmv-item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--off-white);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--green);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .vmv-item:hover {
+      box-shadow: var(--shadow-sm);
+      transform: translateX(4px);
+    }
+    .vmv-item h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 4px;
+    }
+    .vmv-item p {
+      font-size: 0.86rem;
+      color: var(--gray-700);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════
+       ASTA CITA
+    ══════════════════════════════════════════ */
+    #asta-cita {
+      background: var(--green-darker);
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #asta-cita::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(27,107,58,0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(46,139,87,0.15) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .asta-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .asta-header .section-tag {
+      background: rgba(74, 184, 112, 0.2);
+      color: var(--green-light);
+      border-color: rgba(74, 184, 112, 0.25);
+    }
+    .asta-header .section-title { color: var(--white); }
+    .asta-header .section-title span { color: var(--green-light); }
+    .asta-header p {
+      color: rgba(255,255,255,0.6);
+      max-width: 560px;
+      margin: 12px auto 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .asta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .asta-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .asta-card:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(74, 184, 112, 0.3);
+      transform: translateY(-4px);
+    }
+    .asta-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: rgba(74, 184, 112, 0.35);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .asta-card h4 {
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .asta-card p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════
+       CTA SECTION
+    ══════════════════════════════════════════ */
+    #cta {
+      padding: 80px 0;
+      background: var(--off-white);
+    }
+    .cta-box {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+      border-radius: var(--radius-xl);
+      padding: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .cta-text .section-tag {
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .cta-text .section-title { color: var(--white); }
+    .cta-text .section-title span { color: var(--green-light); }
+    .cta-text p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.97rem;
+      line-height: 1.68;
+      margin-top: 10px;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 16px 30px;
+      border-radius: 999px;
+      transition: transform var(--transition), box-shadow var(--transition);
+      flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.2);
+    }
+    .cta-btn svg { transition: transform var(--transition); }
+    .cta-btn:hover svg { transform: translateX(4px); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: var(--dark);
+      padding: 64px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+    .footer-brand .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .footer-brand .logo-text span { color: var(--green-light); }
+    .footer-brand p {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.75;
+      margin-bottom: 22px;
+      max-width: 380px;
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+    .social-link {
+      width: 38px; height: 38px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6);
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .social-link:hover {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
+
+    .footer-col h5 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 20px;
+    }
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.55;
+    }
+    .ci-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-bottom a {
+      color: rgba(255,255,255,0.5);
+      transition: color var(--transition);
+    }
+    .footer-bottom a:hover { color: var(--green-light); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 90px 0 60px; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .asta-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-box { flex-direction: column; padding: 40px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .asta-grid { grid-template-columns: 1fr; }
+      .hero-info-cards { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAVIGASI
+  ══════════════════════════════════════════ -->
+  <nav id="navbar" aria-label="Navigasi Utama KKMP Korpri Raya">
+    <div class="container nav-inner">
+
+      <a href="#" class="nav-logo">
+        <div class="logo-badge" id="logoBadge" style="overflow:hidden;">
+          <img
+            src="logo-kkmp.png"
+            alt="Logo KKMP Korpri Raya"
+            style="width:38px;height:38px;object-fit:contain;border-radius:10px;display:block;"
+            onerror="this.style.display='none';this.parentElement.innerHTML='<svg viewBox=\'0 0 24 24\' style=\'width:20px;height:20px;fill:white\'><path d=\'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z\'/></svg>';"
+          />
+        </div>
+        <span class="logo-text">KKMP <span>Korpri Raya</span></span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#hero">Beranda</a></li>
+        <li><a href="#tentang">Tentang Kami</a></li>
+        <li><a href="#asta-cita">Asta Cita</a></li>
+        <li><a href="#footer">Kontak</a></li>
+        <li><a href="#cta" class="nav-cta">Bergabung</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburgerBtn"
+        aria-label="Buka atau tutup menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menu Mobile">
+    <a href="#hero"      class="mobile-nav-link">Beranda</a>
+    <a href="#tentang"   class="mobile-nav-link">Tentang Kami</a>
+    <a href="#asta-cita" class="mobile-nav-link">Asta Cita</a>
+    <a href="#footer"    class="mobile-nav-link">Kontak</a>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════════ -->
+  <section id="hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+
+      <!-- Teks kiri -->
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Koperasi Aktif &bull; Berdampak Nyata
+        </div>
+        <h1 class="hero-title" id="hero-title">
+          Dari Pemerintah,<br/>
+          <span class="accent">untuk Kesejahteraan Rakyat</span>
+        </h1>
+        <p class="hero-subtitle">
+          KKMP Korpri Raya hadir sebagai wadah usaha koperasi rakyat untuk warga Kopri dengan
+          asas kekeluargaan tanpa birokrasi yang rumit.
+        </p>
+        <div class="hero-actions">
+          <a href="#tentang" class="btn-primary">
+            Kenali Kami Lebih Dekat
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">8</div>
+            <div class="stat-label">Fokus Asta Cita</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num">2025</div>
+            <div class="stat-label">Tahun Berdiri</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num">1<span>Kel.</span></div>
+            <div class="stat-label">Kopri Raya</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel visual kanan -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-emblem">
+          <div class="emblem-icon">🤝</div>
+          <div class="emblem-title">KKMP Korpri Raya</div>
+          <div class="emblem-sub">Koperasi Kelurahan Merah Putih</div>
+          <div class="emblem-divider"></div>
+          <div class="emblem-detail">
+            <div class="emblem-row">
+              <span class="emblem-row-icon">👤</span>
+              <span><strong>Drs. Sahrul Hidayat</strong><br/><span style="font-size:0.76rem;color:var(--gray-500)">Ketua KKMP Korpri Raya</span></span>
+            </div>
+            <div class="emblem-row">
+              <span class="emblem-row-icon">📍</span>
+              <span>Jl. Lampung Jaya No.5, Kopri Raya, Sukarame, Bandar Lampung</span>
+            </div>
+            <div class="emblem-row">
+              <span class="emblem-row-icon">📞</span>
+              <span>+62 813-6904-7699</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-info-cards">
+          <div class="info-card">
+            <div class="info-card-icon">🌿</div>
+            <div>
+              <div class="info-card-label">Asas</div>
+              <div class="info-card-value">Kekeluargaan</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🏛️</div>
+            <div>
+              <div class="info-card-label">Jenis</div>
+              <div class="info-card-value">Koperasi Kelurahan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       TENTANG KAMI
+  ══════════════════════════════════════════ -->
+  <section id="tentang" aria-labelledby="tentang-title">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Panel visual -->
+        <div class="about-visual-panel reveal">
+          <div class="about-main-card">
+            <div class="amc-tag">Semangat Kami</div>
+            <div class="amc-quote">"Bersatu Membangun<br/>Ekonomi Kerakyatan<br/>yang Berdaulat"</div>
+            <div class="amc-divider"></div>
+            <div class="amc-items">
+              <div class="amc-item">
+                <span class="amc-dot"></span>
+                Layanan simpan pinjam untuk anggota
+              </div>
+              <div class="amc-item">
+                <span class="amc-dot"></span>
+                Distribusi kebutuhan pokok warga Kopri
+              </div>
+              <div class="amc-item">
+                <span class="amc-dot"></span>
+                Pemberdayaan UMKM lokal
+              </div>
+              <div class="amc-item">
+                <span class="amc-dot"></span>
+                Ketahanan pangan berbasis komunitas
+              </div>
+            </div>
+          </div>
+          <div class="about-badge">
+            <div class="badge-num">2025</div>
+            <div class="badge-text">Tahun Berdiri</div>
+          </div>
+        </div>
+
+        <!-- Konten teks -->
+        <div class="about-content reveal" style="transition-delay:0.15s;">
+          <span class="section-tag">Tentang Kami</span>
+          <h2 class="section-title" id="tentang-title">
+            Koperasi Rakyat<br/>dari <span>Kopri Raya</span>
+          </h2>
+          <p class="about-lead">
+            KKMP Korpri Raya (Koperasi Kelurahan Merah Putih) lahir dari semangat gotong royong
+            warga Kelurahan Kopri Raya untuk bersama-sama membangun perekonomian lokal yang
+            mandiri dan berdaulat. Di bawah kepemimpinan <strong>Drs. Sahrul Hidayat</strong>
+            selaku Ketua, KKMP Korpri Raya hadir sebagai pilar ekonomi kerakyatan yang nyata
+            di Sukarame, Bandar Lampung — langsung untuk warga, tanpa birokrasi rumit.
+          </p>
+          <div class="vmv-list">
+            <div class="vmv-item">
+              <div>
+                <h4>Visi</h4>
+                <p>Menjadi koperasi kelurahan terdepan yang mendorong kemandirian ekonomi rakyat, swasembada usaha, dan kesejahteraan seluruh warga Kopri Raya selaras cita-cita nasional.</p>
+              </div>
+            </div>
+            <div class="vmv-item">
+              <div>
+                <h4>Misi</h4>
+                <p>Memberdayakan anggota melalui simpan pinjam, pengembangan UMKM, dan kemitraan usaha yang adil demi mewujudkan Indonesia Emas 2045.</p>
+              </div>
+            </div>
+            <div class="vmv-item">
+              <div>
+                <h4>Nilai Utama</h4>
+                <p>Gotong royong, transparansi, keadilan, dan keberpihakan pada anggota menjadi fondasi setiap langkah KKMP Korpri Raya.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       ASTA CITA
+  ══════════════════════════════════════════ -->
+  <section id="asta-cita" aria-labelledby="asta-title">
+    <div class="container">
+      <div class="asta-header reveal">
+        <span class="section-tag">Landasan Kami</span>
+        <h2 class="section-title" id="asta-title">
+          Selaras dengan<br/><span>Asta Cita</span> Presiden
+        </h2>
+        <p>Seluruh program KKMP Korpri Raya berlandaskan pada 8 Cita-Cita (Asta Cita) Presiden Prabowo Subianto sebagai kompas gerak kami.</p>
+      </div>
+      <div class="asta-grid reveal-stagger">
+        <div class="asta-card">
+          <div class="asta-num">01</div>
+          <h4>Memperkokoh Ideologi Pancasila &amp; Demokrasi</h4>
+          <p>Membangun fondasi bangsa yang kuat berlandaskan Pancasila, UUD 1945, dan semangat kebhinekaan.</p>
+        </div>
+        <div class="asta-card">
+          <div class="asta-num">02</div>
+          <h4>Memantapkan Sistem Pertahanan &amp; Keamanan</h4>
+          <p>Memastikan kedaulatan negara terjaga dan rakyat hidup dalam kondisi aman dan damai.</p>
+        </div>
+        <div class="asta-card">
+          <div class="asta-num">03</div>
+          <h4>Swasembada Pangan, Energi &amp; Air</h4>
+          <p>Mewujudkan kemandirian nasional dalam pemenuhan kebutuhan dasar demi ketahanan rakyat.</p>
+        </div>
+        <div class="asta-card">
+          <div class="asta-num">04</div>
+          <h4>Memperkuat Pembangunan SDM Unggul</h4>
+          <p>Investasi pada pendidikan, kesehatan, dan karakter anak bangsa demi generasi emas 2045.</p>
+        </div>
+        <div class="asta-card">
+          <div class="asta-num">05</div>
+          <h4>Hilirisasi &amp; Industrialisasi Nasional</h4>
+          <p>Mendorong nilai tambah sumber daya alam dalam negeri agar manfaatnya dirasakan rakyat.</p>
+        </div>
+        <div class="asta-card">
+          <div class="asta-num">06</div>
+          <h4>Membangun dari Desa &amp; Daerah Terdepan</h4>
+          <p>Pemerataan pembangunan hingga ke daerah tertinggal, terdepan, dan terluar — termasuk Lampung.</p>
+        </div>
+        <div class="asta-card">
+          <div class="asta-num">07</div>
+          <h4>Keadilan bagi Seluruh Rakyat Indonesia</h4>
+          <p>Mewujudkan sistem hukum dan ekonomi yang adil serta berpihak pada kepentingan rakyat banyak.</p>
+        </div>
+        <div class="asta-card">
+          <div class="asta-num">08</div>
+          <h4>Reformasi Politik, Hukum &amp; Birokrasi</h4>
+          <p>Membangun tata kelola pemerintahan yang bersih, transparan, dan berorientasi pada pelayanan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       CTA
+  ══════════════════════════════════════════ -->
+  <section id="cta" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="cta-text">
+          <span class="section-tag">Bergabung Sekarang</span>
+          <h2 class="section-title" id="cta-title">
+            Jadilah Bagian<br/><span>KKMP Korpri Raya</span>
+          </h2>
+          <p>Bergabunglah dan rasakan manfaat nyata koperasi bersama warga Kopri Raya, Sukarame, Bandar Lampung. Tanpa birokrasi rumit, dengan semangat kekeluargaan.</p>
+        </div>
+        <a href="https://wa.me/6281369047699" target="_blank" rel="noopener noreferrer" class="cta-btn">
+          Hubungi Kami
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer id="footer" aria-label="Footer KKMP Korpri Raya">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <span class="logo-text">KKMP <span>Korpri Raya</span></span>
+          <p>Koperasi Kelurahan Merah Putih (KKMP) Korpri Raya — Kel. Kopri Raya, Kec. Sukarame, Kota Bandar Lampung. Dari pemerintah, untuk kesejahteraan rakyat.</p>
+          <div class="social-links" aria-label="Media Sosial KKMP Korpri Raya">
+            <a href="#" class="social-link" aria-label="Instagram KKMP Korpri Raya">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook KKMP Korpri Raya">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="WhatsApp KKMP Korpri Raya">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube KKMP Korpri Raya">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Kontak</h5>
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="ci-icon">👤</span>
+              <span>
+                <strong style="color:rgba(255,255,255,0.85);">Drs. Sahrul Hidayat</strong><br/>
+                Ketua KKMP Korpri Raya
+              </span>
+            </div>
+            <div class="contact-item">
+              <span class="ci-icon">📍</span>
+              <span>Jl. Lampung Jaya No.5, Kopri Raya, Sukarame, Bandar Lampung</span>
+            </div>
+            <div class="contact-item">
+              <span class="ci-icon">📞</span>
+              <span>+62 813-6904-7699</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 KKMP Korpri Raya — Koperasi Kelurahan Merah Putih. Hak Cipta Dilindungi.</span>
+        <span>Dari Pemerintah, untuk Kesejahteraan Rakyat 🌿</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════ -->
+  <script>
+    /* ── NAVBAR SCROLL EFFECT ── */
+    (function () {
+      var nav = document.getElementById('navbar');
+      window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+      }, { passive: true });
+    })();
+
+    /* ── HAMBURGER MENU ── */
+    (function () {
+      var btn  = document.getElementById('hamburgerBtn');
+      var menu = document.getElementById('mobileMenu');
+      btn.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        btn.classList.toggle('active', isOpen);
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+      // Tutup menu saat klik link
+      menu.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          btn.classList.remove('active');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    /* ── SCROLL REVEAL ── */
+    (function () {
+      var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ── SMOOTH ACTIVE NAV LINK ── */
+    (function () {
+      var sections = document.querySelectorAll('section[id], footer[id]');
+      var navLinks = document.querySelectorAll('.nav-links a');
+      window.addEventListener('scroll', function () {
+        var scrollY = window.scrollY + 90;
+        sections.forEach(function (sec) {
+          if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) {
+            navLinks.forEach(function (a) {
+              a.style.color = '';
+              a.style.background = '';
+              if (a.getAttribute('href') === '#' + sec.id) {
+                a.style.color = 'var(--green)';
+                a.style.background = 'var(--green-pale)';
+              }
+            });
+          }
+        });
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
